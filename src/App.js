@@ -1,5 +1,5 @@
-import './components/create.js';
-import './components/start.js';
+import './create.js';
+import './start.js';
 import './App.css';
 
 function App() {
