@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { fetchDogById, fetchDogsByIds } from '../api/dogService';
+import { fetchDogById, fetchDogsByIds } from '../api/dogService.js';
 
 const Profile = () => {
   const { id } = useParams();

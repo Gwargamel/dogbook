@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Dog = require('./models/Dog');
+const Dog = require('./models/Dog.js');
 
 const app = express();
 app.use(express.json());
@@ -20,5 +20,5 @@ app.post('/api/dogs', async (req, res) => {
 
 // Lägg till fler rutter för PUT och DELETE här...
 
-const PORT = 3001;
+const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

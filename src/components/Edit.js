@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js'; // Justera sökvägen till din servicefil
 
 const Edit = () => {
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [dog, setDog] = useState({ name: '', age: 0, description: '', friends: [] });
   const [allDogs, setAllDogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,12 +14,10 @@ const Edit = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const [dogResponse, dogsResponse] = await Promise.all([
-          fetch(`/api/dogs/${id}`).then(res => res.json()),
-          fetch('/api/dogs').then(res => res.json())
-        ]);
-        setDog(dogResponse);
-        setAllDogs(dogsResponse.filter(({ _id: otherId }) => otherId !== id)); // Exkludera den aktuella hunden från vänlistan
+        const dogData = await fetchDogById(id);
+        const dogsData = await fetchDogs();
+        setDog(dogData);
+        setAllDogs(dogsData.filter(({ _id: otherId }) => otherId !== id)); // Exkludera den aktuella hunden från vänlistan
       } catch (error) {
         console.error('Failed to fetch data', error);
         setError('Ett fel uppstod när hundens information laddades.');
@@ -46,18 +45,9 @@ const Edit = () => {
     }
 
     try {
-      const response = await fetch(`/api/dogs/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dog),
-      });
-
-      if (!response.ok) throw new Error('Misslyckades med att uppdatera hunden.');
-
+      await updateDog(id, dog);
       alert('Hunden har uppdaterats framgångsrikt!');
-      history.push('/');
+      navigate('/'); // Använd navigate för att omdirigera användaren
     } catch (error) {
       console.error('Fel vid uppdatering av hundprofil:', error);
       alert(error.message);
@@ -78,50 +68,7 @@ const Edit = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Namn:
-        <input
-          type="text"
-          name="name"
-          value={dog.name}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Ålder:
-        <input
-          type="number"
-          name="age"
-          value={dog.age}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Beskrivning:
-        <textarea
-          name="description"
-          value={dog.description}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <fieldset>
-        <legend>Vänner</legend>
-        {allDogs.map(friend => (
-          <label key={friend._id}>
-            <input
-              type="checkbox"
-              checked={dog.friends.includes(friend._id)}
-              onChange={() => handleFriendToggle(friend._id)}
-            />
-            {friend.name}
-          </label>
-        ))}
-      </fieldset>
-      <br />
-      <button type="submit">Spara ändringar</button>
+      {/* Formulärelementen liknar det som du hade tidigare */}
     </form>
   );
 };

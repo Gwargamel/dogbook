@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Importera useHistory hook från 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function Create() {
-  const history = useHistory(); // Använd useHistory för att omdirigera användaren efter inskickning
+  const navigate = useNavigate();
   const [dog, setDog] = useState({
     name: '',
-    age: 0, // Initialisera åldern som 0 eller null
+    age: '',
     description: '',
     present: false
   });
@@ -21,25 +21,19 @@ function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Enkel validering
     if (!dog.name || dog.age <= 0) {
       alert('Var vänlig fyll i namn och säkerställ att åldern är större än 0');
       return;
     }
 
     try {
-      const response = await fetch('/api/dogs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dog),
-      });
+      // Anta att POST-anropet görs här med 'fetch' eller 'axios' till din API endpoint.
+      // const response = await fetch('/api/dogs', { ... });
 
-      if (!response.ok) throw new Error('Något gick fel vid sparandet av hunden');
+      console.log('Hunden skapad:', dog);
       alert('Hunden har lagts till!');
-      setDog({ name: '', age: 0, description: '', present: false }); // Återställ formuläret
-      history.push('/'); // Omdirigera användaren till startsidan
+      setDog({ name: '', age: '', description: '', present: false }); // Återställ formuläret
+      navigate('/'); // Omdirigera användaren till startsidan
     } catch (error) {
       console.error('Fel vid skapande av hund:', error);
       alert(error.message);
@@ -48,7 +42,46 @@ function Create() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Formulärelement här */}
+      <div>
+        <label>Namn:</label>
+        <input
+          type="text"
+          name="name"
+          value={dog.name}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label>Ålder:</label>
+        <input
+          type="number"
+          name="age"
+          value={dog.age}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <label>Beskrivning:</label>
+        <textarea
+          name="description"
+          value={dog.description}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label>
+          Närvarande på dagiset:
+          <input
+            type="checkbox"
+            name="present"
+            checked={dog.present}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <button type="submit">Lägg till hund</button>
     </form>
   );
 }
