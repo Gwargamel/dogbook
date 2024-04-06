@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000'; // Ersätt med din faktiska API-bas-URL
+const API_BASE_URL = 'http://localhost:5000'; // Ersätt med din faktiska API-bas-URL
 
 // Hämta alla hundar
 export const fetchDogs = async () => {
