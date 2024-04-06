@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const DogSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,4 +8,4 @@ const DogSchema = new mongoose.Schema({
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dog' }]
 });
 
-module.exports = mongoose.model('Dog', DogSchema);
+export default mongoose.model('Dog', DogSchema);
