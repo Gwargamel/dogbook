@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js'; // Justera sökvägen till din servicefil
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js'; // Justera sökvägen efter din projektmappstruktur
 
 const Edit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [dog, setDog] = useState({ name: '', age: 0, description: '', friends: [] });
+  const [dog, setDog] = useState({ name: '', age: '', description: '', friends: [] });
   const [allDogs, setAllDogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -17,7 +17,8 @@ const Edit = () => {
         const dogData = await fetchDogById(id);
         const dogsData = await fetchDogs();
         setDog(dogData);
-        setAllDogs(dogsData.filter(({ _id: otherId }) => otherId !== id)); // Exkludera den aktuella hunden från vänlistan
+        // Filtrera bort nuvarande hund från listan av alla hundar
+        setAllDogs(dogsData.filter(({ _id: otherId }) => otherId !== id));
       } catch (error) {
         console.error('Failed to fetch data', error);
         setError('Ett fel uppstod när hundens information laddades.');
@@ -33,25 +34,8 @@ const Edit = () => {
     const { name, value, type, checked } = event.target;
     setDog(prevDog => ({
       ...prevDog,
-      [name]: type === 'checkbox' ? checked : (name === 'age' ? Number(value) : value),
+      [name]: type === 'checkbox' ? checked : value,
     }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!dog.name || dog.age <= 0) {
-      alert('Var vänlig ange ett giltigt namn och en ålder större än 0.');
-      return;
-    }
-
-    try {
-      await updateDog(id, dog);
-      alert('Hunden har uppdaterats framgångsrikt!');
-      navigate('/'); // Använd navigate för att omdirigera användaren
-    } catch (error) {
-      console.error('Fel vid uppdatering av hundprofil:', error);
-      alert(error.message);
-    }
   };
 
   const handleFriendToggle = (friendId) => {
@@ -63,12 +47,71 @@ const Edit = () => {
     }));
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await updateDog(id, dog);
+      alert('Hunden har uppdaterats framgångsrikt!');
+      navigate('/');
+    } catch (error) {
+      console.error('Fel vid uppdatering av hundprofil:', error);
+      alert(error.message);
+    }
+  };
+
   if (isLoading) return <p>Laddar...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Formulärelementen liknar det som du hade tidigare */}
+      <label>
+        Namn:
+        <input
+          type="text"
+          name="name"
+          value={dog.name || ''}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Ålder:
+        <input
+          type="number"
+          name="age"
+          value={dog.age || ''}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Beskrivning:
+        <textarea
+          name="description"
+          value={dog.description || ''}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <fieldset>
+        <legend>Välj vänner:</legend>
+        {allDogs.length > 0 ? (
+          allDogs.map((friend) => (
+            <div key={friend._id}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={dog.friends.includes(friend._id)}
+                  onChange={() => handleFriendToggle(friend._id)}
+                /> {friend.name}
+              </label>
+            </div>
+          ))
+        ) : (
+          <p>Inga andra hundar att visa.</p>
+        )}
+      </fieldset>
+      <button type="submit">Spara ändringar</button>
     </form>
   );
 };
