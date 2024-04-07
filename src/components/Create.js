@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importera axios
 import { fetchDogs, createDog } from '../api/dogService.js'; // Importera funktionen för att skapa en hund och hämta alla hundar
 
 function Create() {
