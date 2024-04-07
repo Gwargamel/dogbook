@@ -1,5 +1,4 @@
 /* App.css */
-
 .dog-present {
   color: green;
 }
@@ -8,9 +7,10 @@
   color: red;
 }
 
-
 .App {
   text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
 .App-header {
@@ -28,4 +28,58 @@
   color: #61dafb;
 }
 
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
 
+.profile-container, .edit-container {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+input, textarea {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: bold;
+}
+
+.friend-list {
+  list-style: none;
+  padding: 0;
+}
+
+.friend-item {
+  margin: 10px 0;
+}
+
+img.dog-photo {
+  max-width: 100%;
+  border-radius: 8px;
+}
