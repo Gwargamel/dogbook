@@ -1,3 +1,14 @@
+/* App.css */
+
+.dog-present {
+  color: green;
+}
+
+.dog-absent {
+  color: red;
+}
+
+
 .App {
   text-align: center;
 }
