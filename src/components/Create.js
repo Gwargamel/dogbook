@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDog } from '../api/dogService.js'; // Importera createDog funktionen
+import axios from 'axios'; // Importera axios
 
 function Create() {
   const navigate = useNavigate();
@@ -24,20 +24,14 @@ function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validera åldern som ett tal och inte som en sträng
-    const validatedDog = {
-      ...dog,
-      age: parseInt(dog.age, 10),
-    };
-
-    if (!validatedDog.name || validatedDog.age <= 0) {
+    if (!dog.name || dog.age <= 0) {
       alert('Var vänlig fyll i namn och säkerställ att åldern är större än 0');
       return;
     }
 
     try {
-      const response = await createDog(validatedDog); // Använd createDog funktionen för att skicka datan
-      console.log('Hunden skapad:', response); // Logga svaret från servern
+      const response = await axios.post('/api/dogs', dog);
+      console.log('Hunden skapad:', response.data); // Logga responsen från servern
       alert('Hunden har lagts till!');
       setDog({ name: '', age: '', description: '', present: false }); // Återställ formuläret
       navigate('/'); // Omdirigera användaren till startsidan
@@ -49,7 +43,23 @@ function Create() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Formulärelement här */}
+      {/* Formulärelementen ska vara här */}
+      <div>
+        <label>Namn:</label>
+        <input type="text" name="name" value={dog.name} onChange={handleChange} required />
+      </div>
+      <div>
+        <label>Ålder:</label>
+        <input type="number" name="age" value={dog.age} onChange={handleChange} required />
+      </div>
+      <div>
+        <label>Beskrivning:</label>
+        <textarea name="description" value={dog.description} onChange={handleChange} />
+      </div>
+      <div>
+        <label>Närvarande på dagiset:</label>
+        <input type="checkbox" name="present" checked={dog.present} onChange={handleChange} />
+      </div>
       <button type="submit">Lägg till hund</button>
     </form>
   );
