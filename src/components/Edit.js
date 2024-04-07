@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js';
-import '../App.css';
 
 const Edit = () => {
   const { id } = useParams();
@@ -68,38 +67,40 @@ const Edit = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="edit-container">
-    <form onSubmit={handleSubmit}>
-      <label>
-        Namn:
-        <input type="text" name="name" value={dog.name} onChange={handleInputChange} />
-      </label>
-      <label>
-        Ålder:
-        <input type="number" name="age" value={dog.age} onChange={handleInputChange} />
-      </label>
-      <label>
-        Beskrivning:
-        <textarea name="description" value={dog.description} onChange={handleInputChange} />
-      </label>
-      <fieldset>
-        <legend>Välj vänner:</legend>
-        {allDogs.map((friend) => (
-          <div key={friend._id}>
-            <label>
-              <input
-                type="checkbox"
-                name="friends"
-                value={friend._id}
-                checked={dog.friends.includes(friend._id)}
-                onChange={() => handleFriendSelection(friend._id)}
-              /> {friend.name}
-            </label>
-          </div>
-        ))}
-      </fieldset>
-      <button type="submit">Spara ändringar</button>
-    </form>
+    <div className="container">
+      <div className="edit-container">
+        <form onSubmit={handleSubmit}>
+          <label>
+            Namn:
+            <input type="text" name="name" value={dog.name} onChange={handleInputChange} />
+          </label>
+          <label>
+            Ålder:
+            <input type="number" name="age" value={dog.age} onChange={handleInputChange} />
+          </label>
+          <label>
+            Beskrivning:
+            <textarea name="description" value={dog.description} onChange={handleInputChange} />
+          </label>
+          <fieldset>
+            <legend>Välj vänner:</legend>
+            {allDogs.map((friend) => (
+              <div key={friend._id}>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="friends"
+                    value={friend._id}
+                    checked={dog.friends.includes(friend._id)}
+                    onChange={() => handleFriendSelection(friend._id)}
+                  /> {friend.name}
+                </label>
+              </div>
+            ))}
+          </fieldset>
+          <button className="button" type="submit">Spara ändringar</button>
+        </form>
+      </div>
     </div>
   );
 };

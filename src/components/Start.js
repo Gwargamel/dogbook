@@ -29,6 +29,7 @@ function Start() {
   };
 
   return (
+    
     <div className="container">
       <h1>Hunddagis</h1>
       <Link to="/create" className="button">Skapa ny hund</Link>

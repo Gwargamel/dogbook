@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchDogs, createDog } from '../api/dogService.js'; 
-import '../App.css';
+
 
 function Create() {
   const navigate = useNavigate();
