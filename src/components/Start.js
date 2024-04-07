@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchDogs, deleteDog } from '../api/dogService.js'; // Anpassa sökvägen baserat på din filstruktur
+import { fetchDogs, deleteDog } from '../api/dogService.js';
 
 function Start() {
   const [dogs, setDogs] = useState([]);
@@ -28,18 +28,18 @@ function Start() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Hunddagis</h1>
-      <Link to="/create">Skapa ny hund</Link>
+      <Link to="/create" className="button">Skapa ny hund</Link>
       <ul>
-       {dogs.map(dog => (
-  <li key={dog._id}>
-    <Link to={`/profile/${dog._id}`} className={dog.present ? 'dog-present' : 'dog-absent'}>
-      {dog.name}
-    </Link>
-    <button onClick={() => handleDelete(dog._id)}>Ta bort</button>
-  </li>
-))}
+        {dogs.map(dog => (
+          <li key={dog._id} className="friend-item">
+            <Link to={`/profile/${dog._id}`} className={dog.present ? 'dog-present' : 'dog-absent'}>
+              {dog.name}
+            </Link>
+            <button className="button" onClick={() => handleDelete(dog._id)}>Ta bort</button>
+          </li>
+        ))}
       </ul>
     </div>
   );

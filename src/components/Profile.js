@@ -49,17 +49,17 @@ const Profile = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      {dogImage && <img src={dogImage} alt="Hund" style={{ maxWidth: '100px', height: 'auto' }} />}
+    <div className="profile-container">
+      {dogImage && <img src={dogImage} alt="Hund" className="dog-photo" />}
       <h2>{dog?.name}</h2>
       <p>Ålder: {dog?.age}</p>
       <p>Beskrivning: {dog?.description}</p>
       {friends.length > 0 && (
         <>
           <h3>Vänner:</h3>
-          <ul>
+          <ul className="friend-list">
             {friends.map(friend => (
-              <li key={friend._id}>{friend.name}</li>
+              <li key={friend._id} className="friend-item">{friend.name}</li>
             ))}
           </ul>
         </>
@@ -73,9 +73,9 @@ const Profile = () => {
         />
       </label>
       <br />
-      <Link to={`/edit/${id}`}>Redigera</Link>
+      <Link to={`/edit/${id}`} className="button">Redigera</Link>
       <br />
-      <Link to="/">Tillbaka till startsidan</Link>
+      <Link to="/" className="button">Tillbaka till startsidan</Link>
     </div>
   );
 };
