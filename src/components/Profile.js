@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchDogById, updateDog, fetchDogsByIds } from '../api/dogService.js';
+import '../App.css';
 
 const Profile = () => {
   const { id } = useParams();
@@ -75,7 +76,7 @@ const Profile = () => {
       <br />
       <Link to={`/edit/${id}`} className="button">Redigera</Link>
       <br />
-      <Link to="/" className="button">Tillbaka till startsidan</Link>
+      <Link to="/" className="App-link">Tillbaka till startsidan</Link>
     </div>
   );
 };

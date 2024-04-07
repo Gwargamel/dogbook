@@ -44,26 +44,25 @@
 }
 
 .button {
-  background-color: #007bff;
+  background-color: #ff00aa;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 8px 15px; /* Mindre padding för mindre knappar */
+  padding: 8px 10px; 
   cursor: pointer;
-  font-size: 14px; /* Mindre text för att matcha proportionerna */
+  font-size: 14px; 
 }
 
 .button:hover {
   background-color: #0056b3;
 }
 
-/* Minskar storleken på länkar för att matcha knappstorleken */
 .App-link, .dog-present, .dog-absent {
-  font-size: 16px; /* Justera denna storlek efter behov */
+  font-size: 16px; 
 }
 
 input[type="checkbox"] {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 input, textarea {
@@ -87,6 +86,6 @@ label {
 }
 
 img.dog-photo {
-  max-width: 100%;
+  max-width: 10%;
   border-radius: 8px;
 }

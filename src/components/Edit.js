@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js';
+import '../App.css';
 
 const Edit = () => {
   const { id } = useParams();
@@ -67,6 +68,7 @@ const Edit = () => {
   if (error) return <p>{error}</p>;
 
   return (
+    <div className="edit-container">
     <form onSubmit={handleSubmit}>
       <label>
         Namn:
@@ -98,6 +100,7 @@ const Edit = () => {
       </fieldset>
       <button type="submit">Spara ändringar</button>
     </form>
+    </div>
   );
 };
 

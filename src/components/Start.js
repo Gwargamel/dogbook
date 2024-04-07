@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchDogs, deleteDog } from '../api/dogService.js';
+import '../App.css';
 
 function Start() {
   const [dogs, setDogs] = useState([]);
@@ -31,13 +32,13 @@ function Start() {
     <div className="container">
       <h1>Hunddagis</h1>
       <Link to="/create" className="button">Skapa ny hund</Link>
-      <ul>
+      <ul className="friend-list">
         {dogs.map(dog => (
           <li key={dog._id} className="friend-item">
             <Link to={`/profile/${dog._id}`} className={dog.present ? 'dog-present' : 'dog-absent'}>
               {dog.name}
             </Link>
-            <button className="button" onClick={() => handleDelete(dog._id)}>Ta bort</button>
+            <button className="button" onClick={() => handleDelete(dog._id)}>X</button>
           </li>
         ))}
       </ul>
