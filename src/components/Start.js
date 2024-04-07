@@ -1,5 +1,3 @@
-//Start.js
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchDogs, deleteDog } from '../api/dogService.js'; // Anpassa sökvägen baserat på din filstruktur
@@ -34,16 +32,14 @@ function Start() {
       <h1>Hunddagis</h1>
       <Link to="/create">Skapa ny hund</Link>
       <ul>
-        {dogs.map(dog => (
-          <li key={dog._id}>
-            <span className={dog.present ? 'dog-present' : 'dog-absent'}>
-              {dog.name}
-            </span>
-            - {dog.present ? 'På dagiset' : 'Hemma'}
-            <Link to={`/profile/${dog._id}`}> Profil </Link>
-            <button onClick={() => handleDelete(dog._id)}>Ta bort</button>
-          </li>
-        ))}
+       {dogs.map(dog => (
+  <li key={dog._id}>
+    <Link to={`/profile/${dog._id}`} className={dog.present ? 'dog-present' : 'dog-absent'}>
+      {dog.name}
+    </Link>
+    <button onClick={() => handleDelete(dog._id)}>Ta bort</button>
+  </li>
+))}
       </ul>
     </div>
   );

@@ -27,7 +27,7 @@ export const createDog = async (dogData) => {
   }
 };
 
-// Uppdatera en hunds information
+// Uppdatera hund
 export const updateDog = async (id, dogData) => {
   try {
     const response = await axios.put(`${API_BASE_URL}/api/dogs/${id}`, dogData);
@@ -37,6 +37,7 @@ export const updateDog = async (id, dogData) => {
     throw error;
   }
 };
+
 
 // Ta bort en hund
 export const deleteDog = async (id) => {
