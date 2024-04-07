@@ -1,5 +1,3 @@
-//server.js
-
 // Importera express och mongoose
 import express from 'express';
 import mongoose from 'mongoose';
@@ -67,6 +65,19 @@ app.put('/api/dogs/:id', async (req, res) => {
     res.json(dog);
   } catch (error) {
     res.status(400).send(error.message);
+  }
+});
+
+// DELETE-route för att ta bort en befintlig hund
+app.delete('/api/dogs/:id', async (req, res) => {
+  try {
+    const dog = await Dog.findByIdAndDelete(req.params.id);
+    if (!dog) {
+      return res.status(404).send('Dog not found.');
+    }
+    res.status(200).send('Dog deleted.');
+  } catch (error) {
+    res.status(500).send('Server error');
   }
 });
 
