@@ -10,12 +10,13 @@ import Edit from './components/Edit.js';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Start />} exact />
-        <Route path="/create" element={<Create />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/edit/:id" element={<Edit />} />
-      </Routes>
+     <Routes>
+  <Route path="/" element={<Start />} /> 
+  <Route path="/create" element={<Create />} />
+  <Route path="/profile/:id" element={<Profile />} />
+  <Route path="/edit/:id" element={<Edit />} />
+</Routes>
+
     </Router>
   );
 }
