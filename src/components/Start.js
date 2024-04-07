@@ -36,7 +36,10 @@ function Start() {
       <ul>
         {dogs.map(dog => (
           <li key={dog._id}>
-            {dog.name} - {dog.present ? 'På dagiset' : 'Hemma'}
+            <span className={dog.present ? 'dog-present' : 'dog-absent'}>
+              {dog.name}
+            </span>
+            - {dog.present ? 'På dagiset' : 'Hemma'}
             <Link to={`/profile/${dog._id}`}> Profil </Link>
             <button onClick={() => handleDelete(dog._id)}>Ta bort</button>
           </li>

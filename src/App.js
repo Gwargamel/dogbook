@@ -6,6 +6,8 @@ import Start from './components/Start.js';
 import Create from './components/Create.js';
 import Profile from './components/Profile.js';
 import Edit from './components/Edit.js';
+import './App.css';
+
 
 function App() {
   return (
