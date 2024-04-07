@@ -28,7 +28,20 @@ app.get('/api/dogs', async (req, res) => {
     const dogs = await Dog.find();
     res.json(dogs);
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// GET-route för att hämta en specifik hund baserat på ID
+app.get('/api/dogs/:id', async (req, res) => {
+  try {
+    const dog = await Dog.findById(req.params.id);
+    if (!dog) {
+      return res.status(404).send('Dog not found');
+    }
+    res.json(dog);
+  } catch (error) {
+    res.status(500).send('Server error');
   }
 });
 
