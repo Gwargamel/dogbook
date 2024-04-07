@@ -1,3 +1,5 @@
+//server.js
+
 // Importera express och mongoose
 import express from 'express';
 import mongoose from 'mongoose';
