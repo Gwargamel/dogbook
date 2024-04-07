@@ -1,3 +1,5 @@
+//Profile.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { fetchDogById, fetchDogsByIds } from '../api/dogService.js';

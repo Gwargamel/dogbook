@@ -83,6 +83,16 @@ app.delete('/api/dogs/:id', async (req, res) => {
   }
 });
 
+// POST-route för batch-anrop till att hämta flera hundar baserat på en lista av ID:n
+app.post('/api/dogs/batch', async (req, res) => {
+  try {
+    const dogs = await Dog.find({ '_id': { $in: req.body.ids }});
+    res.json(dogs);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 // Definiera en port för servern att lyssna på
 const PORT = process.env.PORT || 5000; // Använd PORT från miljövariabler om den finns
 
