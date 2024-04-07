@@ -1,16 +1,18 @@
+//server.js
+
 // Importera express och mongoose
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
 // Importera Dog-modellen
-import Dog from '../models/Dog.js'; // Antag att detta är den korrekta sökvägen
-
-// Aktivera CORS för alla förfrågningar
-app.use(cors());
+import Dog from '../models/Dog.js'; // Använd den korrekta sökvägen
 
 // Skapa en ny Express-applikation
 const app = express();
+
+// Aktivera CORS för alla förfrågningar
+app.use(cors());
 
 // Middleware för att tolka JSON i inkommande förfrågningar
 app.use(express.json());
@@ -56,7 +58,7 @@ app.put('/api/dogs/:id', async (req, res) => {
 });
 
 // Definiera en port för servern att lyssna på
-const PORT = 3000; // Eller vilken port du föredrar
+const PORT = process.env.PORT || 5000; // Använd PORT från miljövariabler om den finns
 
 // Starta servern och lyssna på den angivna porten
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+//Start.js
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchDogs, deleteDog } from '../api/dogService.js'; // Justera sökvägen efter din projektstruktur
+import { fetchDogs, deleteDog } from '../api/dogService.js'; // Anpassa sökvägen baserat på din filstruktur
 
 function Start() {
   const [dogs, setDogs] = useState([]);
@@ -14,14 +16,14 @@ function Start() {
         console.error('Error fetching dogs:', error);
       }
     };
-
     getDogs();
   }, []);
 
-  const handleDeleteDog = async (id) => {
+  const handleDelete = async (id) => {
     try {
       await deleteDog(id);
-      setDogs(dogs.filter(dog => dog._id !== id)); // Uppdatera statet för att reflektera borttagningen
+      const updatedDogs = dogs.filter(dog => dog._id !== id);
+      setDogs(updatedDogs);
     } catch (error) {
       console.error('Error deleting dog:', error);
     }
@@ -34,9 +36,9 @@ function Start() {
       <ul>
         {dogs.map(dog => (
           <li key={dog._id}>
-            {dog.name} - {dog.present ? <span style={{color: 'green'}}>På dagiset</span> : <span style={{color: 'red'}}>Hemma</span>}
+            {dog.name} - {dog.present ? 'På dagiset' : 'Hemma'}
             <Link to={`/profile/${dog._id}`}> Profil </Link>
-            <button onClick={() => handleDeleteDog(dog._id)} style={{marginLeft: '10px', color: 'red'}}>X</button>
+            <button onClick={() => handleDelete(dog._id)}>Ta bort</button>
           </li>
         ))}
       </ul>

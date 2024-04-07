@@ -1,3 +1,5 @@
+//dogService.js
+
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:5000'; // Ersätt med din faktiska API-bas-URL
@@ -12,6 +14,7 @@ export const fetchDogs = async () => {
     throw error;
   }
 };
+
 
 // Skapa en ny hund
 export const createDog = async (dogData) => {

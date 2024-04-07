@@ -1,3 +1,4 @@
+//Dog.js
 import mongoose from 'mongoose';
 
 const DogSchema = new mongoose.Schema({
