@@ -1,19 +1,25 @@
+// Importerar nödvändiga moduler
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+// Importerar hundmodellen från angiven fil
 import Dog from '../models/Dog.js'; 
 
+// Skapar en Express-app
 const app = express();
 
+// Middleware för att tillåta CORS (Cross-Origin Resource Sharing)
 app.use(cors());
+// Middleware för att tolka JSON i förfrågningar
 app.use(express.json());
 
+// Ansluter till MongoDB-databasen 'dogbook' som körs lokalt
 mongoose.connect('mongodb://localhost:27017/dogbook')
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...', err));
 
-
+// Endpoint för att hämta alla hundar
 app.get('/api/dogs', async (req, res) => {
   try {
     const dogs = await Dog.find();
@@ -23,6 +29,7 @@ app.get('/api/dogs', async (req, res) => {
   }
 });
 
+// Endpoint (GET) för att hämta en specifik hund baserat på dess ID
 app.get('/api/dogs/:id', async (req, res) => {
   try {
     const dog = await Dog.findById(req.params.id);
@@ -35,12 +42,12 @@ app.get('/api/dogs/:id', async (req, res) => {
   }
 });
 
-// POST-route som hanterar vänrelationer direkt vid skapandet av en ny hund
+// Endpoint (POST) som hanterar vänrelationer direkt vid skapandet av en ny hund
 app.post('/api/dogs', async (req, res) => {
   try {
     const newDog = new Dog(req.body);
     await newDog.save();
-
+// Loopar igenom listan av vänner och uppdaterar deras 'friends' array
     const friendUpdates = newDog.friends.map(async (friendId) => {
       const friendDog = await Dog.findById(friendId);
       if (friendDog && !friendDog.friends.includes(newDog._id)) {
@@ -56,7 +63,7 @@ app.post('/api/dogs', async (req, res) => {
   }
 });
 
-//PUT-route som hanterar vänrelationer mellan hundarna
+// Endpoint (PUT) som hanterar vänrelationer mellan hundarna
 app.put('/api/dogs/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -65,6 +72,7 @@ app.put('/api/dogs/:id', async (req, res) => {
       return res.status(404).send('Dog not found.');
     }
 
+    // Uppdaterar vänrelationer för befintlig hund
     const friendUpdates = dogToUpdate.friends.map(async (friendId) => {
       const friendDog = await Dog.findById(friendId);
       if (friendDog && !friendDog.friends.includes(id)) {
@@ -80,6 +88,7 @@ app.put('/api/dogs/:id', async (req, res) => {
   }
 });
 
+// Endpoint (DELETE) för att ta bort en befintlig hund
 app.delete('/api/dogs/:id', async (req, res) => {
   try {
     const dog = await Dog.findByIdAndDelete(req.params.id);
@@ -92,6 +101,7 @@ app.delete('/api/dogs/:id', async (req, res) => {
   }
 });
 
+// Endpoint (POST) för att hämta flera hundar via en lista av ID:n
 app.post('/api/dogs/batch', async (req, res) => {
   try {
     const dogs = await Dog.find({ '_id': { $in: req.body.ids } });
@@ -101,5 +111,6 @@ app.post('/api/dogs/batch', async (req, res) => {
   }
 });
 
+// Startar servern på porten som angivits i miljövariabeln PORT, eller 5000 som standard
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
