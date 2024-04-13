@@ -1,64 +1,73 @@
+// En komponent som ansvarar för att skapa en ny hund och hantera användarinteraktioner genom formulärfält. 
+
+// Importerar React-hooks och navigeringsfunktion från react-router-dom
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Importerar API-funktioner för att hämta och skapa hundar
 import { fetchDogs, createDog } from '../api/dogService.js'; 
 
 
 function Create() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook för att navigera användaren till en annan route
   const [dog, setDog] = useState({
     name: '',
     age: '',
     description: '',
     present: false,
-    friends: [] // Lägg till en ny property för vänner
+    friends: [] // En property för hundens vänner
   });
-  const [allDogs, setAllDogs] = useState([]); // State för att lagra alla hundar
+  // State-array som anger tillgängliga hundar för val av vänner
+  const [allDogs, setAllDogs] = useState([]); 
 
-  // Hämta alla hundar när komponenten laddas
+  // Hämtar alla hundar när komponenten laddas
   useEffect(() => {
     const getAllDogs = async () => {
       const dogs = await fetchDogs();
-      setAllDogs(dogs);
+      setAllDogs(dogs); // Sätter alla hundar i state
     };
     getAllDogs();
   }, []);
 
+  // Hanterar ändringar i formulärfälten
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setDog(prevDog => ({
       ...prevDog,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value // Uppdaterar värden för text eller checkbox
     }));
   };
 
-  // Hantera förändringar i vänval
+  // Hanterar förändringar i val av hundvänner
   const handleFriendSelection = (friendId) => {
     const isFriendSelected = dog.friends.includes(friendId);
     setDog(prevDog => ({
       ...prevDog,
       friends: isFriendSelected
-        ? prevDog.friends.filter(id => id !== friendId)
-        : [...prevDog.friends, friendId],
+        ? prevDog.friends.filter(id => id !== friendId) // Tar bort vän om den redan är vald
+        : [...prevDog.friends, friendId], // Lägger till vän om den inte redan är vald
     }));
   };
 
+  // Hanterar när formuläret skickas
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Förhindrar standardbeteende för formulärskick
     const newDog = {
       ...dog,
       age: Number(dog.age), // Konverterar åldern till ett nummer
     };
 
     try {
-      await createDog(newDog); // Använd den uppdaterade funktionen för att skapa en hund
+      await createDog(newDog); // Skapar ny hund genom API-anrop
       alert('Hunden har lagts till!');
-      navigate('/'); // Omdirigera användaren till startsidan
+      navigate('/'); // Omdirigerar användaren tillbaka till startsidan
     } catch (error) {
       console.error('Fel vid skapande av hund:', error);
       alert('Fel vid skapande av hund:', error);
     }
   };
 
+  // JSX för formuläret
   return (
     <form onSubmit={handleSubmit}>
       {/* Dina ursprungliga formulärfält här */}
@@ -78,7 +87,6 @@ function Create() {
         <label>Närvarande på dagiset:</label>
         <input type="checkbox" name="present" checked={dog.present} onChange={handleChange} />
       </div>
-      {/* Lägg till det nya fältet för att välja vänner */}
       <fieldset>
         <legend>Välj vänner (valfritt):</legend>
         {allDogs.map(friend => (
@@ -100,4 +108,5 @@ function Create() {
   );
 }
 
+// Exporterar komponenten för användning i andra delar av applikationen
 export default Create;
