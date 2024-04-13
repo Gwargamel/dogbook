@@ -2,9 +2,9 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000'; // Ersätt med din faktiska API-bas-URL
+const API_BASE_URL = 'http://localhost:5000'; 
 
-// Hämta alla hundar
+// Hämtar alla hundar
 export const fetchDogs = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/api/dogs`);
@@ -16,7 +16,7 @@ export const fetchDogs = async () => {
 };
 
 
-// Skapa en ny hund
+// Skapar en ny hund
 export const createDog = async (dogData) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/api/dogs`, dogData);

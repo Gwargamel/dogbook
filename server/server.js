@@ -1,10 +1,8 @@
-// Importera express och mongoose
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-// Importera Dog-modellen
-import Dog from '../models/Dog.js'; // Anpassa sökvägen efter din projektstruktur
+import Dog from '../models/Dog.js'; 
 
 const app = express();
 
@@ -37,7 +35,7 @@ app.get('/api/dogs/:id', async (req, res) => {
   }
 });
 
-// Uppdaterad POST-route som hanterar vänrelationer direkt vid skapandet av en ny hund
+// POST-route som hanterar vänrelationer direkt vid skapandet av en ny hund
 app.post('/api/dogs', async (req, res) => {
   try {
     const newDog = new Dog(req.body);
@@ -58,7 +56,7 @@ app.post('/api/dogs', async (req, res) => {
   }
 });
 
-// Uppdaterad PUT-route som hanterar vänrelationer ömsesidigt
+//PUT-route som hanterar vänrelationer mellan hundarna
 app.put('/api/dogs/:id', async (req, res) => {
   const { id } = req.params;
   try {
