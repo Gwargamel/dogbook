@@ -57,7 +57,7 @@ const Profile = () => {
         <p>Beskrivning: {dog?.description}</p>
         {friends.length > 0 && (
           <>
-            <h3>Vänner:</h3>
+            <h2>Vänner:</h2>
             <ul className="friend-list">
               {friends.map(friend => (
                 <li key={friend._id} className="friend-item">{friend.name}</li>
@@ -66,7 +66,7 @@ const Profile = () => {
           </>
         )}
         <div className="presence-container">
-          <label>
+          <label className="checkbox-label">
             Närvarande:
             <input
               type="checkbox"
@@ -77,6 +77,7 @@ const Profile = () => {
         </div>
         <br />
         <Link to={`/edit/${id}`} className="button">Redigera</Link>
+        <br />
         <br />
         <Link to="/" className="App-link">Tillbaka till startsidan</Link>
       </div>

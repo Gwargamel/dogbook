@@ -1,18 +1,16 @@
-/* Global styles */
 body, #root, .App {
   margin: 0;
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Layout for main content area */
 .container {
   max-width: 800px;
   margin: 20px auto;
   padding: 0 20px;
 }
 
-/* Style for header (if used in your components) */
+/* Style för header */
 .App-header {
   background-color: #282c34;
   padding: 20px 0;
@@ -20,28 +18,39 @@ body, #root, .App {
   text-align: center;
 }
 
-/* Links styling */
-.App-link, .dog-present, .dog-absent {
+/* Länkar */
+.App-link {
+  color: #f0f0f0; 
+  padding: 10px 15px;
+  background-color: #606c88; 
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
   font-size: 1rem;
-  text-decoration: none; /* Removes underline */
+  transition: background-color 0.3s; 
 }
 
-/* Style for buttons */
+.App-link:hover {
+  background-color: #3d4860; 
+}
+
+/* Knappar */
 .button {
-  background-color: #ff00aa;
-  color: white;
+  background-color: #606c88; 
+  color: #f0f0f0; 
+  text-decoration: none;
   border: none;
   border-radius: 5px;
   padding: 8px 15px;
   cursor: pointer;
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem;
+  transition: background-color 0.3s; 
 }
 
 .button:hover {
-  background-color: #cc0088;
+  background-color: #5a6978; 
 }
 
-/* Input and label styling */
 input[type="checkbox"], input[type="text"], input[type="number"], textarea {
   margin: 10px 0;
   padding: 10px;
@@ -53,7 +62,7 @@ label {
   font-weight: bold;
 }
 
-/* List styling */
+/* Listor */
 .friend-list, .dog-list {
   list-style: none;
   padding: 0;
@@ -66,30 +75,24 @@ label {
   justify-content: space-between;
 }
 
-/* Image styling */
+/* Profilbilder av hundarna */
 img.dog-photo {
-  width: 30%;
-  border-radius: 70%;
+  width: 200px; 
+  height: 200px; 
+  border-radius: 50%; 
   border: 3px solid #c8bebe;
   margin-bottom: 20px;
-  
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Presence indicator styling */
-.dog-present {
-  color: green;
-}
 
-.dog-absent {
-  color: red;
-}
-
-/* Utility classes */
 .hidden {
   display: none;
 }
 
-/* New Styles */
+/* Profilsidan */
 .profile-container {
   background-color: #f0f0f0;
   border: 1px solid #ddd;
@@ -100,31 +103,25 @@ img.dog-photo {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.presence-container {
-  background-color: #8c0d0d;
-  border: 5px solid #1e0404;
-
+/* Styling för närvarande-checkboxen */
+.presence-container .checkbox-label {
+  display: flex; 
+  align-items: center; 
+  margin-top: 10px; 
+  margin-right: 490px;
 }
 
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+
+input[type="checkbox"] {
+  margin-left: 5px; 
 }
 
-.checkbox {
-  margin-left: 10px;
+/* Grön textfärg för närvarande hundar */
+.dog-present {
+  color: green;
 }
 
-.App-link {
-  color: #61dafb;
-  padding: 10px 15px;
-  background-color: #282c34;
-  border-radius: 5px;
-  margin: 5px;
-  display: inline-block;
-}
-
-.App-link:hover {
-  background-color: #000000;
+/* Röd textfärg för frånvarande hundar */
+.dog-absent {
+  color: red;
 }
