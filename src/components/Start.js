@@ -32,7 +32,9 @@ function Start() {
     
     <div className="container">
       <h1>Hunddagis</h1>
+      <br />
       <Link to="/create" className="button">Skapa ny hund</Link>
+      <br /><br />
       <ul className="friend-list">
         {dogs.map(dog => (
           <li key={dog._id} className="friend-item">

@@ -39,6 +39,7 @@ body, #root, .App {
   background-color: #606c88; 
   color: #f0f0f0; 
   text-decoration: none;
+  margin-left: 10px;
   border: none;
   border-radius: 5px;
   padding: 8px 15px;
@@ -70,9 +71,17 @@ label {
 
 .friend-item, .dog-item {
   margin: 10px 0;
+}
+
+/* CSS för val av vänner */
+.friend-selection {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-bottom: 5px; 
+  margin-right: 500px;
+}
+
+.friend-selection input[type="checkbox"] {
+  margin-left: 190px; 
 }
 
 /* Profilbilder av hundarna */
@@ -80,7 +89,7 @@ img.dog-photo {
   width: 200px; 
   height: 200px; 
   border-radius: 50%; 
-  border: 3px solid #c8bebe;
+  border: 3px solid #606c88;
   margin-bottom: 20px;
   display: block; 
   margin-left: auto;

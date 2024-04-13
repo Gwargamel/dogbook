@@ -17,7 +17,7 @@ const Edit = () => {
         const dogData = await fetchDogById(id);
         const dogsData = await fetchDogs();
         setDog(dogData);
-        setAllDogs(dogsData.filter(d => d._id !== id)); // Exkludera nuvarande hund från listan
+        setAllDogs(dogsData.filter(d => d._id !== id)); 
       } catch (error) {
         console.error('Failed to fetch data', error);
         setError('Ett fel uppstod.');
@@ -85,18 +85,17 @@ const Edit = () => {
           <fieldset>
             <legend>Välj vänner:</legend>
             {allDogs.map((friend) => (
-              <div key={friend._id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    name="friends"
-                    value={friend._id}
-                    checked={dog.friends.includes(friend._id)}
-                    onChange={() => handleFriendSelection(friend._id)}
-                  /> {friend.name}
-                </label>
-              </div>
-            ))}
+  <div key={friend._id} className="friend-selection">
+    <input
+      type="checkbox"
+      name="friends"
+      value={friend._id}
+      checked={dog.friends.includes(friend._id)}
+      onChange={() => handleFriendSelection(friend._id)}
+    />
+    <label onClick={() => handleFriendSelection(friend._id)}>{friend.name}</label>
+  </div>
+))}
           </fieldset>
           <button className="button" type="submit">Spara ändringar</button>
         </form>
