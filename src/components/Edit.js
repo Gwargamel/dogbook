@@ -109,7 +109,7 @@ const Edit = () => {
     <label onClick={() => handleFriendSelection(friend._id)}>{friend.name}</label>
   </div>
 ))}
-          </fieldset>
+        </fieldset>
           <button className="button" type="submit">Spara ändringar</button>
         </form>
       </div>

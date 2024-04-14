@@ -70,11 +70,9 @@ function Create() {
   // JSX för formuläret
   return (
     <form onSubmit={handleSubmit}>
-      {/* Dina ursprungliga formulärfält här */}
-      <div>
+      <div className="container">
         <label>Namn:</label>
         <input type="text" name="name" value={dog.name} onChange={handleChange} required />
-      </div>
       <div>
         <label>Ålder:</label>
         <input type="number" name="age" value={dog.age} onChange={handleChange} required />
@@ -87,6 +85,8 @@ function Create() {
         <label>Närvarande på dagiset:</label>
         <input type="checkbox" name="present" checked={dog.present} onChange={handleChange} />
       </div>
+      </div>
+      <div className="container">
       <fieldset>
         <legend>Välj vänner (valfritt):</legend>
         {allDogs.map(friend => (
@@ -103,7 +103,10 @@ function Create() {
           </div>
         ))}
       </fieldset>
-      <button type="submit">Lägg till hund</button>
+      </div>
+      <div className="container">
+      <button className="button" type="submit">Lägg till hund</button>
+      </div>
     </form>
   );
 }

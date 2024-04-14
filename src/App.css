@@ -1,104 +1,99 @@
+/* Global styling för body, root-id och App-klass, används för att ge en enhetlig baslayout och typsnitt */
 body, #root, .App {
   margin: 0;
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Används runt innehåll för att ge det form och struktur */
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 20px;
+  max-width: 800px; /* Maxbredd för att hålla innehållet centrerat och läsbart */
+  margin: 20px auto; /* Centrerar containern */
+  padding: 0 20px; /* Ger innehållet lite utrymme så det inte rör kanterna */
 }
 
-/* Style för header */
-.App-header {
-  background-color: #282c34;
-  padding: 20px 0;
-  color: white;
-  text-align: center;
-}
-
-/* Länkar */
+/* Grundläggande stilar för länkar som används i applikationen */
 .App-link {
   color: #f0f0f0; 
-  padding: 10px 15px;
+  padding: 10px 15px; /* Padding för att göra länkarna större och enklare att klicka på */
   background-color: #606c88; 
-  border-radius: 5px;
-  display: inline-block;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: background-color 0.3s; 
+  border-radius: 5px; /* Runda hörn på länkarna */
+  display: inline-block; /* Gör så att padding fungerar korrekt och länkarna kan ha marginaler */
+  text-decoration: none; /* Tar bort understrykningen från länkar */
+  font-size: 1rem; /* Standard textstorlek */
+  transition: background-color 0.3s; /* Övergångseffekt för bakgrundsfärgen */
 }
 
+/* Hover-effekt för länkar */
 .App-link:hover {
-  background-color: #3d4860; 
+  background-color: #3d4860; /* Mörkare blå färg när användaren hovrar över länken */
 }
 
-/* Knappar */
+/* Stilar för knappar i applikationen */
 .button {
   background-color: #606c88; 
   color: #f0f0f0; 
   text-decoration: none;
   margin-left: 10px;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  cursor: pointer;
+  border: none; /* Ingen ram runt knapparna */
+  border-radius: 5px; /* Runda hörn */
+  padding: 8px 15px; /* Vertikal och horisontell padding */
+  cursor: pointer; /* Muspekaren blir en hand när användaren hovrar över knappen */
   font-size: 0.875rem;
-  transition: background-color 0.3s; 
+  transition: background-color 0.3s; /* Övergångseffekt för bakgrundsfärgen */
 }
 
+/* Hover-effekt för knappar */
 .button:hover {
   background-color: #5a6978; 
 }
 
+/* Stilar för olika typer av inputfält */
 input[type="checkbox"], input[type="text"], input[type="number"], textarea {
-  margin: 10px 0;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
+  margin: 10px 0; /* Vertikal marginal */
+  padding: 10px; /* Padding runt texten i inputfälten */
+  width: 100%; /* Full bredd för att utnyttja tillgängligt utrymme */
+  box-sizing: border-box; /* Inkluderar padding och border i elementets totala bredd och höjd */
 }
 
+/* Grundläggande styling för etiketter */
 label {
   font-weight: bold;
 }
 
-/* Listor */
+/* Stilar för listor som visar hundar eller vänner */
 .friend-list, .dog-list {
   list-style: none;
   padding: 0;
 }
 
+/* Stilar för nedan angivna listelement */
 .friend-item, .dog-item {
-  margin: 10px 0;
+  margin: 10px 0; /* Marginal mellan varje element i listan */
 }
 
-/* CSS för val av vänner */
+/* Layout för vänval */
 .friend-selection {
   display: flex;
   margin-bottom: 5px; 
-  margin-right: 500px;
+  margin-right: 500px; /* Vansinnigt stor marginal, men jag hittade ingen bättre lösning för att placera checkboxen närmare texten just nu.. */
 }
 
+/* Specifik marginal för checkboxar inom vänval */
 .friend-selection input[type="checkbox"] {
-  margin-left: 190px; 
+  margin-left: 190px; /* En kompromiss-lösning för att lösa problemet med avståndet mellan checkbox och text */
 }
 
-/* Profilbilder av hundarna */
+/* Stilar för profilbilder på hundarna */
 img.dog-photo {
-  width: 200px; 
-  height: 200px; 
-  border-radius: 50%; 
-  border: 3px solid #606c88;
-  margin-bottom: 20px;
-  display: block; 
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-.hidden {
-  display: none;
+  width: 200px; /* Fast bredd */
+  height: 200px; /* Fast höjd */
+  border-radius: 50%; /* Gör bilden cirkelformad */
+  border: 3px solid #606c88; /* Ram i samma färg som bakgrundsfärgen på länkar/knappar */
+  margin-bottom: 20px; /* Marginal under bilden */
+  display: block; /* Gör att elementet tar upp hela radens bredd */
+  margin-left: auto; /* Centrerar bilden horisontellt */
+  margin-right: auto; /* Centrerar bilden horisontellt */
 }
 
 /* Profilsidan */
