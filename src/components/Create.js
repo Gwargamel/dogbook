@@ -2,7 +2,7 @@
 
 // Importerar React-hooks och navigeringsfunktion från react-router-dom
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Importerar API-funktioner för att hämta och skapa hundar
 import { fetchDogs, createDog } from '../api/dogService.js'; 
@@ -106,6 +106,8 @@ function Create() {
       </div>
       <div className="container">
       <button className="button" type="submit">Lägg till hund</button>
+      <br /><br />
+          <Link to="/" className="App-link">Tillbaka till startsidan</Link>
       </div>
     </form>
   );

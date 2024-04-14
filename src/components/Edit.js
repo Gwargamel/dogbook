@@ -2,7 +2,7 @@
 
 // Importerar React-hooks och navigeringsfunktion från react-router-dom
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 // Importerar API-funktioner för att uppdatera hundar
 import { fetchDogById, updateDog, fetchDogs } from '../api/dogService.js';
@@ -78,10 +78,9 @@ const Edit = () => {
   if (isLoading) return <p>Laddar...</p>;
   if (error) return <p>{error}</p>;
 
-  // Formuläret för att redigera hundens information
+  // Formulär för att redigera hundens information
   return (
     <div className="container">
-      <div className="edit-container">
         <form onSubmit={handleSubmit}>
           <label>
             Namn:
@@ -111,11 +110,14 @@ const Edit = () => {
 ))}
         </fieldset>
           <button className="button" type="submit">Spara ändringar</button>
+          <br /><br />
+          <Link to="/" className="App-link">Tillbaka till startsidan</Link>
         </form>
       </div>
-    </div>
   );
 };
+
+
 
 // Exporterar komponenten för användning i andra delar av applikationen
 export default Edit;
