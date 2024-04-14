@@ -17,7 +17,7 @@ function App() {
     <Router>
       {/* Routes-komponenten omsluter alla Route-komponenter */}
      <Routes>
-       {/* Varje Route-komponent definierar en path och den komponent som ska renderas. id är en parameter som tas emot av komponenten */}
+       {/* Varje Route-komponent definierar en path och den komponent som ska renderas. id är en parameter som  används för att identifiera specifika hundar baserat på deras unika identifierare */}
   <Route path="/" element={<Start />} /> {/* Renderar Start-komponenten */}
   <Route path="/create" element={<Create />} /> {/* Renderar Create-komponenten för att skapa en ny hund */}
   <Route path="/profile/:id" element={<Profile />} /> {/* Renderar Profile-komponenten som visar en hundprofil */}
