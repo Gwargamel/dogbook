@@ -1,12 +1,14 @@
+/* Typsnitt för hela dokumentet som visas i webbläsaren */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; /* Förbättrar renderingen av typsnitt på WebKit-baserade webbläsare (t.ex. Chrome och Safari) genom att göra textkanterna jämnare. */
+  -moz-osx-font-smoothing: grayscale; /* Förbättrar textrenderingen på Firefox (endast macOS) genom att använda gråskaleutjämning, vilket ger en jämnare text vid låga upplösningar. */
 }
 
+/* Specifik stil för <code>-element, ofta använda för att visa kodblock eller kodsnuttar inom HTML-dokument */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    monospace; /* Lista över monospace-typsnitt som används för att visa kod. Alla tecken har samma bredd vilket gör texten lättare att läsa i kodblock. */
 }
