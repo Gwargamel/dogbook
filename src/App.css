@@ -96,26 +96,26 @@ img.dog-photo {
   margin-right: auto; /* Centrerar bilden horisontellt */
 }
 
-/* Profilsidan */
+/* Styling för hundens profilsida */
 .profile-container {
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; /* Ljusgrå bakgrundsfärg */
+  border: 1px solid #ddd; /* Ljus grå ram */
+  border-radius: 8px; /* Lätt rundade hörn */
+  padding: 20px; /* Padding runt innehållet */
+  max-width: 600px; /* Maxbredd för att hålla innehållet läsbart */
+  margin: 20px auto; /* Centrerar containern vertikalt och horisontellt */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Visar en subtil skugga runt containern */
 }
 
 /* Styling för närvarande-checkboxen */
 .presence-container .checkbox-label {
-  display: flex; 
-  align-items: center; 
-  margin-top: 10px; 
-  margin-right: 490px;
+  display: flex; /* Använder flexbox för layout */
+  align-items: center; /* Centrerar elementen vertikalt */
+  margin-top: 10px; /* Marginal ovanför */
+  margin-right: 490px; /* En kompromiss-lösning för att lösa problemet med avståndet mellan checkbox och text */
 }
 
-
+/* Marginal för checkboxen inom närvaro-checkboxen */
 input[type="checkbox"] {
   margin-left: 5px; 
 }

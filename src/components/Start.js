@@ -36,11 +36,8 @@ function Start() {
 
   // JSX som renderar startsidan
   return (
-    
     <div className="container">
       <h1>Hunddagis</h1>
-      <br />
-      <Link to="/create" className="button">Skapa ny hund</Link>
       <br /><br />
       <ul className="friend-list">
         {dogs.map(dog => (
@@ -51,6 +48,8 @@ function Start() {
             <button className="button" onClick={() => handleDelete(dog._id)}>X</button>
           </li>
         ))}
+         <br />
+      <Link to="/create" className="button">Skapa ny hund</Link>
       </ul>
     </div>
   );
